@@ -17,17 +17,24 @@ Clone the repository:
 ```bash
 git clone https://github.com/kopernix/server-utils.git
 cd server-utils
-chmod 0755 scripts/set-hostname.sh
-sudo ./scripts/set-hostname.sh
 ```
 
-Alternatively, download only the script:
+Run the required utility:
+
+```bash
+sudo ./scripts/set-hostname.sh
+sudo ./scripts/set-ubuntu-ip.sh
+```
+
+Alternatively, download an individual script:
 
 ```bash
 curl -fLO https://raw.githubusercontent.com/kopernix/server-utils/main/scripts/set-hostname.sh
-chmod 0755 set-hostname.sh
-sudo ./set-hostname.sh
+curl -fLO https://raw.githubusercontent.com/kopernix/server-utils/main/scripts/set-ubuntu-ip.sh
+chmod 0755 set-hostname.sh set-ubuntu-ip.sh
 ```
+
+Then run the downloaded script with `sudo`.
 
 Author: Joan Puiggali aka kopernix
 
