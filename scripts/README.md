@@ -37,12 +37,38 @@ When working over SSH, use the offered `netplan try` step. If the new network co
 Example OVH `/32` values:
 
 ```text
-IP/CIDR: 51.38.162.62/32
-Gateway: 51.91.70.254
+IP/CIDR: 203.0.113.10/32
+Gateway: 198.51.100.254
 Primary DNS: 8.8.8.8
 Secondary DNS: 1.1.1.1
 On-link: yes
 ```
+
+## `chk-cve-2026nov.sh`
+
+Read-only check for the November 2026 PHP, nginx, and Apache vulnerabilities, on the host and inside running Docker containers.
+
+Run it as root:
+
+```bash
+sudo bash ./chk-cve-2026nov.sh
+```
+
+Or run a pinned revision directly:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kopernix/server-utils/<COMMIT>/scripts/chk-cve-2026nov.sh | sudo bash
+```
+
+The script compares installed PHP, nginx, and Apache versions against the fixed upstream releases. When a version is older, it looks for the CVE identifiers in the Debian package changelog to detect distribution backports. It also reports services still running with replaced binaries or modules, and whether Apache has HTTP/2 enabled.
+
+For PHP, it verifies the `session.upload_progress.enabled = Off` mitigation for every web SAPI. On Debian and Ubuntu it reads `php.ini`, `conf.d`, PHP-FPM pool overrides, and Apache `php_admin_flag` overrides. On official `php` images and other layouts it queries the PHP binary. It does not check `.htaccess` or `.user.ini` files, and it does not detect configuration changes that have not been reloaded.
+
+Each running container is inspected through `docker exec` with `sh`. Containers without a shell are reported for manual review.
+
+The script ends with an `OK`, `review`, or `vulnerable` summary and exits with a non-zero status when a vulnerable component is found. The CVE lists reflect the state on 20 November 2026; verify them against the official advisories. Set `NO_COLOR=1` to disable colors.
+
+The script modifies nothing.
 
 ## Planned
 

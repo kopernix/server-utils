@@ -24,6 +24,7 @@ Run the required utility:
 ```bash
 sudo ./scripts/set-hostname.sh
 sudo ./scripts/set-ubuntu-ip.sh
+sudo bash ./scripts/chk-cve-2026nov.sh
 ```
 
 Alternatively, download an individual script:
@@ -31,7 +32,8 @@ Alternatively, download an individual script:
 ```bash
 curl -fLO https://raw.githubusercontent.com/kopernix/server-utils/main/scripts/set-hostname.sh
 curl -fLO https://raw.githubusercontent.com/kopernix/server-utils/main/scripts/set-ubuntu-ip.sh
-chmod 0755 set-hostname.sh set-ubuntu-ip.sh
+curl -fLO https://raw.githubusercontent.com/kopernix/server-utils/main/scripts/chk-cve-2026nov.sh
+chmod 0755 set-hostname.sh set-ubuntu-ip.sh chk-cve-2026nov.sh
 ```
 
 Then run the downloaded script with `sudo`.

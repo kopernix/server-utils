@@ -248,7 +248,7 @@ DNS_SECONDARY="1.1.1.1"
 
 if [[ "$MODE" == "static" ]]; then
     read -r -p 'IP/CIDR: ' ADDRESS
-    valid_ipv4_cidr "$ADDRESS" || die "Enter a valid IPv4 address with CIDR, for example 51.38.162.62/32."
+    valid_ipv4_cidr "$ADDRESS" || die "Enter a valid IPv4 address with CIDR, for example 203.0.113.10/32."
 
     read -r -p 'Gateway: ' GATEWAY
     valid_ipv4 "$GATEWAY" || die "Enter a valid IPv4 gateway."
